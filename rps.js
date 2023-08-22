@@ -5,6 +5,8 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
+	console.log(playerSelection); // Testing selections
+	console.log(computerSelection);
 	if (playerSelection === computerSelection) {
 		console.log(`Tie Game! Both chose: ${playerSelection}!`);
 	} else if (
@@ -17,3 +19,13 @@ function playRound(playerSelection, computerSelection) {
 		console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
 	}
 }
+
+const playerSelection = prompt(
+	"Make a choice (Rock/Paper/Scissors): "
+).toLowerCase();
+
+const computerSelection = getComputerChoice();
+
+const outcome = playRound(playerSelection, computerSelection);
+
+console.log(outcome);
