@@ -5,8 +5,8 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-	console.log(playerSelection); // Testing selections
-	console.log(computerSelection);
+	console.log(`Player: ${playerSelection}`); // Testing selections
+	console.log(`Computer: ${computerSelection}`);
 	if (playerSelection === computerSelection) {
 		return `Tie Game! Both chose: ${playerSelection}!`;
 	} else if (
@@ -41,11 +41,15 @@ function game() {
 		}
 	}
 	if (playerScore > computerScore) {
-		console.log("You win the game!");
+		console.log(
+			`You win! Final Score:\nPlayer: ${playerScore}\nComputer: ${computerScore}`
+		);
 	} else if (computerScore > playerScore) {
-		console.log("You lose the game!");
+		console.log(
+			`You lose! Final Score:\nComputer: ${computerScore}\nPlayer: ${playerScore}`
+		);
 	} else {
-		console.log("Tie Game!");
+		console.log(`Tie game! Final Score:\n${computerScore}-${playerScore}`);
 	}
 }
 
