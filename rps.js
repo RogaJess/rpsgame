@@ -8,24 +8,45 @@ function playRound(playerSelection, computerSelection) {
 	console.log(playerSelection); // Testing selections
 	console.log(computerSelection);
 	if (playerSelection === computerSelection) {
-		console.log(`Tie Game! Both chose: ${playerSelection}!`);
+		return `Tie Game! Both chose: ${playerSelection}!`;
 	} else if (
 		(playerSelection === "rock" && computerSelection === "scissors") ||
 		(playerSelection === "paper" && computerSelection === "rock") ||
 		(playerSelection === "scissors" && computerSelection === "paper")
 	) {
-		console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+		return `You win! ${playerSelection} beats ${computerSelection}`;
 	} else {
-		console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+		return `You lose! ${computerSelection} beats ${playerSelection}`;
 	}
 }
 
-const playerSelection = prompt(
-	"Make a choice (Rock/Paper/Scissors): "
-).toLowerCase();
+function game() {
+	const maxRounds = 5; // Set round total to setup loop
+	let playerScore = 0;
+	let computerScore = 0;
 
-const computerSelection = getComputerChoice();
+	for (let i = 0; i < maxRounds; i++) {
+		const playerSelection = prompt(
+			"Make a choice (Rock/Paper/Scissors): "
+		).toLowerCase();
 
-const outcome = playRound(playerSelection, computerSelection);
+		const computerSelection = getComputerChoice();
+		const outcome = playRound(playerSelection, computerSelection);
+		console.log(outcome);
 
-console.log(outcome);
+		if (outcome.includes("win!")) {
+			playerScore++;
+		} else if (outcome.includes("lose!")) {
+			computerScore++;
+		}
+	}
+	if (playerScore > computerScore) {
+		console.log("You win the game!");
+	} else if (computerScore > playerScore) {
+		console.log("You lose the game!");
+	} else {
+		console.log("Tie Game!");
+	}
+}
+
+game();
