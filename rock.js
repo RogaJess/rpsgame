@@ -1,10 +1,16 @@
+const CHOICES = ["rock", "paper", "scissors"];
+const MAX_ROUNDS = 5;
+
 function getComputerChoice() {
-	const choices = ["Rock", "Paper", "Scissors"];
-	const random = Math.floor(Math.random() * choices.length);
-	return choices[random].toLowerCase();
+	const random = Math.floor(Math.random() * CHOICES.length);
+	return CHOICES[random].toLowerCase();
 }
 
 function playRound(playerSelection, computerSelection) {
+	if (!CHOICES.includes(playerSelection)) {
+		return "Invalid choice. Please choose one of: Rock, Paper, or Scissors.";
+	}
+
 	if (playerSelection === computerSelection) {
 		return `Tie Game! Both chose: ${playerSelection}!`;
 	} else if (
@@ -19,15 +25,13 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-	const maxRounds = 5; // Set round total to setup loop
 	let playerScore = 0;
 	let computerScore = 0;
 
-	for (let i = 0; i < maxRounds; i++) {
+	for (let i = 0; i < MAX_ROUNDS; i++) {
 		const playerSelection = prompt(
 			"Make a choice (Rock/Paper/Scissors): "
 		).toLowerCase();
-
 		const computerSelection = getComputerChoice();
 		const outcome = playRound(playerSelection, computerSelection);
 		console.log(outcome);
@@ -38,6 +42,7 @@ function game() {
 			computerScore++;
 		}
 	}
+
 	if (playerScore > computerScore) {
 		console.log(
 			`You win! Final Score:\nPlayer: ${playerScore}\nComputer: ${computerScore}`
